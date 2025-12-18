@@ -1,0 +1,30 @@
+name: CI
+
+on: push
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+
+      - name: Setup project (make setup)
+        run: make setup
+
+
+      - name: Run linter (make lint)
+        run: make lint
+
+
+      - name: Run tests (make test)
+        run: make test
